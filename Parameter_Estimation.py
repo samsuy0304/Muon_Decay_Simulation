@@ -5,11 +5,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 import statistics
 import sys
+from scipy.optimize import minimize
 
+
+    
 # User Defined Functions
 
 def Average(lst):
     return sum(lst) / len(lst)
+
+def likelihood(alpha, data):
+    # Calculate the likelihood of observing the data given the decay rate parameter alpha
+    p = []
+    for i in data:
+        pi = np.exp(-alpha * i)
+        p.append(pi)
+    likelihood = np.prod(p)
+    return likelihood
+
+
 
 def CreateLabels(m,d):
     n = m.split("/")
@@ -95,4 +109,12 @@ if __name__ == "__main__":
     plt.ylabel('Probability')
     plt.legend()
     plt.savefig(InputFile+"Times_avg_HistogramPlot.png")
-    plt.show()
+    
+
+    nll = lambda alpha: likelihood(alpha,times_avg1)
+
+    # Use maximum likelihood estimation to find the value of lambda that maximizes the likelihood
+    result = minimize(nll, x0=[2.6e-6])
+    print(result)
+    lambda_hat = result.x[0]
+    print(f"Estimated lambda: {lambda_hat}")
