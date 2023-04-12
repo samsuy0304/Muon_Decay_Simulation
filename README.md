@@ -1,7 +1,23 @@
 # PHSX815_Project3
 
-This repository contains the code that estimates the decay rate parameter of a muon decay process. The data is simulated using exponential random sampling. 
+This repository contains the code for parameter estimation of muon decay times. The code uses `matplotlib` and `scipy` libraries to run. Libraries can be installed from resepctive websites.
 
-## Issues with the Code
+### Details
 
-I don't think I clearly understood the Loglikehood concept. I have created some smaple data. `Parameter_Estimation.py` runs the optimization on it. But I keep getting wrong estimation. Please look at my code and let me know what is wrong with it. I used the same process I used in HW8, but it doesn't really make sense.
+`Muon.py`: Simulates muon decays using exponential randm sampling. Stores the values in text files under `Data_Files`.
+
+`Parameter_Estimaation.py`: Uses `scipy.optamize` to perform maximum likelihood estimation.
+
+### How to Run the Code 
+
+To simulate the muon decay use:
+```
+python Muon.py -seed [-seed number] -output -events [#Events] -p [% -ve muons] -avg [life avg muon] -pife [life positive muon] -nife [life negative muon]
+
+```
+
+To use `Parameter_Estimation.py` you must edit the `InputFile` to your newly simulated data. 
+
+```
+python Parameter_Estimation.py
+```
