@@ -77,14 +77,13 @@ if __name__ == "__main__":
 
     ln, lp, lm = Tests.Time(meas)
     
-    Filename = "Data_Files/"+ "Sim_"+str(p[0])+str(events)+"_"+str(lifetime_neg)+"_"+str(lifetime_pos)+".txt"
-    Filename2 = "Data_Files/"+ "Neg_"+str(p[0])+str(events)+"_"+str(lifetime_neg)+".txt"
-    Filename3 = "Data_Files/"+ "Pos_"+str(p[0])+str(events)+"_"+str(lifetime_pos)+".txt"
+    Filename = "Data_Files/"+ "Sim_"+str(p[0])+'_'+str(events)+"_"+str(lifetime_neg)+"_"+str(lifetime_pos)+"Meas"+str(meas)+".txt"
 
+    
     if doOutputFile:
         outfile = open(Filename, 'w')
         outfile.write(str(lifetime_neg)+" \n")
-        for e in range(0,events):
+        for e in range(0,len(lm)):
             #outfile.write(str(Average(lm[e]))+" ")
             for t in range(0,meas):
                 #pass
@@ -92,27 +91,6 @@ if __name__ == "__main__":
             outfile.write("\n")
         outfile.close()
 
-    if doOutputFile:
-        outfile = open(Filename2, 'w')
-        outfile.write(str(lifetime_neg)+" \n")
-        for e in range(0,len(ln)):
-            #outfile.write(str(Average(ln[e]))+" ")
-            for t in range(0,meas):
-                #pass
-                outfile.write(str(ln[e][t])+" ")
-            outfile.write("\n")
-        outfile.close()
 
-    if doOutputFile:
-        outfile = open(Filename3, 'w')
-        outfile.write(str(lifetime_neg)+" \n")
-        for e in range(0,len(lp)):
-            #outfile.write(str(Average(lp[e]))+" ")
-            for t in range(0,meas):
-                #pass
-                outfile.write(str(lp[e][t])+" ")
-            outfile.write("\n")
-        outfile.close()
-    
      
 
